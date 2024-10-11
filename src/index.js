@@ -142,8 +142,8 @@ async function raceEngine(character1, character2) {
 
 async function declareWinner(character1, character2) {
   console.log('Resultado final: ')
-  console.log(`${character1.nome}: ${character1.points} pontos(s)`)
-  console.log(`${character2.nome}: ${character2.points} pontos(s)`)
+  console.log(`${character1.name}: ${character1.points} pontos(s)`)
+  console.log(`${character2.name}: ${character2.points} pontos(s)`)
 
   if (character1.points > character2.points) {
     console.log(`${character1.name} venceu a corrida! 🏆`)
@@ -159,5 +159,6 @@ async function declareWinner(character1, character2) {
     `🏁🚨 Corrida entre ${player1.name} e ${player2.name} começando...\n`
   )
 
-  await raceEngine(player1, player2);
+  await raceEngine(player1, player2)
+  await declareWinner(player1,player2)
 })()
