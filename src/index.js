@@ -40,7 +40,7 @@ async function getRandomBlock() {
 }
 
 async function logRollResult(characterName, block, diceResult, atribute) {
-  console.log(`${characterName} rolou um dado de ${block} ${diceResult}`)
+  console.log(`${characterName} 🎲 rolou um dado de ${block} ${diceResult} + ${atribute} = ${diceResult + atribute}`)
 }
 
 async function raceEngine(character1, character2) {
@@ -57,11 +57,11 @@ async function raceEngine(character1, character2) {
 
     // Teste de habilidade
     let testSkill1 = 0
-    let testSkill12 = 0
+    let testSkill2 = 0
 
     if (block === "RETA") {
       testSkill1 = diceResult1 + character1.speed
-      testSkill12 = diceResult2 + character2.speed
+      testSkill2 = diceResult2 + character2.speed
 
       await logRollResult(player1.name, 'velocidade', diceResult1, character1.speed)
       await logRollResult(player2.name, 'velocidade', diceResult2, character2.speed)
@@ -69,7 +69,7 @@ async function raceEngine(character1, character2) {
 
     if (block === "CURVA") {
       testSkill1 = diceResult1 + character1.maneuverability
-      testSkill12 = diceResult2 + character2.maneuverability
+      testSkill2 = diceResult2 + character2.maneuverability
 
       await logRollResult(player1.name, 'manobrabilidade', diceResult1, character1.maneuverability)
       await logRollResult(player2.name, 'manobrabilidade', diceResult2, character2.maneuverability)    }
@@ -82,7 +82,7 @@ async function raceEngine(character1, character2) {
 }
 
 (async function main() {
-  console.log(`🏁🚨 Corrida entre ${palyer1.name} e ${player2.name} começando...\n`)
+  console.log(`🏁🚨 Corrida entre ${player1.name} e ${player2.name} começando...\n`)
 
-  await raceEngine(palyer1, player2)
+  await raceEngine(player1, player2)
 })()
