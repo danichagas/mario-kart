@@ -56,28 +56,40 @@ async function raceEngine(character1, character2) {
     let diceResult2 = await rollDice()
 
     // Teste de habilidade
-    let testSkill1 = 0
-    let testSkill2 = 0
+    let totalTestSkill1 = 0
+    let totalTestSkill2 = 0
 
     if (block === "RETA") {
-      testSkill1 = diceResult1 + character1.speed
-      testSkill2 = diceResult2 + character2.speed
+      totalTestSkill1 = diceResult1 + character1.speed
+      totalTestSkill2 = diceResult2 + character2.speed
 
       await logRollResult(player1.name, 'velocidade', diceResult1, character1.speed)
       await logRollResult(player2.name, 'velocidade', diceResult2, character2.speed)
     }
 
     if (block === "CURVA") {
-      testSkill1 = diceResult1 + character1.maneuverability
-      testSkill2 = diceResult2 + character2.maneuverability
+      totalTestSkill1 = diceResult1 + character1.maneuverability
+      totalTestSkill2 = diceResult2 + character2.maneuverability
 
       await logRollResult(player1.name, 'manobrabilidade', diceResult1, character1.maneuverability)
-      await logRollResult(player2.name, 'manobrabilidade', diceResult2, character2.maneuverability)    }
+      await logRollResult(player2.name, 'manobrabilidade', diceResult2, character2.maneuverability)   
+    }
 
     if (block === "CONFRONTO") {
       let powerResult1 = diceResult1 + character1.power
       let powerResult2 = diceResult2 + character2.power
     }
+
+    // Verificando o vencedor
+    if (totalTestSkill1 > totalTestSkill2) {
+      console.log(`${character1.name} marcou um ponto!`)
+      character1.points++
+    } else if (totalTestSkill2 > totalTestSkill1) {
+      console.log(`${character2.name} marcou um ponto!`)
+      character2.points++
+    }
+
+    console.log('-----------------------------------------------------')
   }
 }
 
